@@ -1,4 +1,4 @@
-python: '2.7'
+python: '3.6'
 numpy: '1.11'
 package_versions:
   embree: 2.16.0
@@ -10,7 +10,6 @@ package_versions:
   eigen: "3.3.3"
   embree: "2.16.0"
   flann: "1.8.4"
-  geos: "3.6.0"
   geotiff: "1.4.1"
   gmm: "5.0"
   gsl: "2.2.1"
@@ -36,6 +35,7 @@ package_versions:
   vtk: "7.1.1"
   xalanc: "1.11"
   xercesc: "3.1.4"
+  geos: "3.5.1"
 run_dependencies:
   blas: "openblas"
   boost: "1.65*"

@@ -20,7 +20,7 @@ requirements:
     - libpng                [unix]
     - zlib                  [unix]
     - pkg-config            [unix]
-
+    - {{ compiler('cxx') }} [linux]
   run:
     - boost {{ run_dependencies.boost }}
     - eigen

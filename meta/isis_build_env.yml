@@ -39,3 +39,4 @@ dependencies:
   - xalan-c=1.11
   - xerces-c=3.1.4
   - libtiff=4.0.6
+  - geos=3.5.1

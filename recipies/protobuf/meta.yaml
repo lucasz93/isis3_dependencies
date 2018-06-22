@@ -1,0 +1,68 @@
+{% set version = "3.5.2" %}
+
+package:
+  name: protobuf
+  version: {{ version }}
+
+source:
+  url: https://github.com/google/protobuf/archive/v{{ version }}/protobuf-v{{ version }}.tar.gz
+
+build:
+  number: 0
+  features:
+    - vc9   # [win and py27]
+    - vc10  # [win and py34]
+    - vc14  # [win and (py35 or py36)]
+
+c_compiler_version:    # [linux]
+    - 6.5              # [linux]
+cxx_compiler_version:  # [linux]
+    - 6.5              # [linux]
+
+requirements:
+  build:
+    - toolchain
+    - zlib 1.2.11
+    - python
+    - setuptools
+    - libprotobuf {{ version }}
+    - six
+    - ordereddict                # [py26]
+    - unittest2                  # [py26]
+    # - {{ compiler('cxx') }}      # [linux]
+  run:
+    - zlib 1.2.11
+    - python
+    - setuptools
+    - libprotobuf {{ version }}
+    - six
+    - ordereddict                # [py26]
+    - unittest2                  # [py26]
+
+test:
+  commands:
+    - python -c "from google.protobuf.internal import api_implementation; assert api_implementation.Type() == 'cpp'"  # [unix]
+    - python -c "from google.protobuf.internal import api_implementation; assert api_implementation.Type() == 'python'"  # [win]
+    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
+    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
+  imports:
+    - google
+    - google.protobuf
+    - google.protobuf.internal
+    - google.protobuf.pyext
+    - google.protobuf.util
+    - google.protobuf.compiler
+
+about:
+  home: https://developers.google.com/protocol-buffers/
+  license: BSD 3-Clause
+  license_file: LICENSE
+  summary: "Protocol Buffers - Google's data interchange format."
+
+extra:
+  recipe-maintainers:
+    - dopplershift
+    - jakirkham
+    - jjhelmus
+    - ocefpaf
+    - hajapy

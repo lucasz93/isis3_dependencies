@@ -5,7 +5,6 @@ Thumbs.db
 .Trashes
 .Spotlight*
 meta.yaml.template
-meta.yaml
 build/
 pkgs/
 *.pyc

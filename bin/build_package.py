@@ -1,5 +1,4 @@
 #! /usr/bin/env python
-
 import yaml
 import os
 import argparse
@@ -45,8 +44,8 @@ def build_pkg(recipe_path, outputdir, config):
     try:
         conda.build(recipe_path, **build_config)
     except Exception as e :
-        print "build of %s failed." %recipe_path
-        print e
+        print("build of {} failed.".format(recipe_path))
+        print(e)
 
 if __name__ == '__main__':
 
@@ -71,12 +70,12 @@ if __name__ == '__main__':
     no_meta = args.get('nometa')
     no_prompt = args.get('noprompt')
     no_build = args.get('nobuild')
-
     packages=args['packages']
+
     if ('all' in packages):
         packages = get_all_pkgs(recipies_path)
 
-    print "Operating on packages: {}".format(' '.join(packages))
+    print("Operating on packages: {}".format(' '.join(packages)))
 
     config = load_config(config_file)
     config['channel'] = channel
@@ -84,25 +83,24 @@ if __name__ == '__main__':
     config['noupload'] = args.get('noupload')
 
     for package in packages:
-
         recipe_meta_tmpl = '%s/%s/meta.yaml.tmpl' %(recipies_path,package)
         recipe_meta = '%s/%s/meta.yaml' %(recipies_path,package)
         recipe_path = '%s/%s' %(recipies_path,package)
 
         if not no_prompt:
-            res=raw_input('Do you want to process %s (y/n)? ' %package)
+            res=input('Do you want to process %s (y/n)? ' %package)
             if res is not 'y':
                 continue
 
         if not no_meta:
-            print "Generating meta file from template for package %s" %package
+            print("Generating meta file from template for package {}".format(package))
             if not write_meta(recipe_meta_tmpl,recipe_meta,config):
-                print "No template found for %s" %package
+                print("No template found for {}".format(package))
             else:
-                print "New meta.yaml generated for %s" %package
+                print("New meta.yaml generated for {}".format(package))
         else:
-            print "Will use existing meta file for %s" %package
+            print("Will use existing meta file for {}".format(package))
         if not no_build:
             build_pkg(recipe_path, dest_path, config)
         else:
-            print "Skipping build of %s ..." %package
+            print("Skipping build of %s ...".format(package))

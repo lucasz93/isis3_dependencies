@@ -1,0 +1,60 @@
+{% set version = "3.5.1" %}
+
+package:
+  name: geos
+  version: {{ version }}
+
+source:
+  url: https://github.com/libgeos/libgeos/archive/{{ version }}.tar.gz
+  patches:
+    - xmltester.cpp.patch  # [win]
+    - DirectedEdgeStar_vc9.patch  # [win and py27]
+    - GEOSGeom_createCollection_vc9.patch  # [win and py27]
+
+build:
+  number: 1
+  skip: True  # [win and py36]
+  features:
+    - vc9  # [win and py27]
+    - vc10  # [win and py34]
+    - vc14  # [win and py>=35]
+
+requirements:
+  build:
+    - python  # [win]
+    - msinttypes  # [win]
+    - cmake  # [win]
+    - automake  # [not win]
+    - libtool  # [not win]
+    - vc 9  # [win and py27]
+    - vc 10  # [win and py34]
+    - vc 14  # [win and py>=35]
+    - {{ compiler('cxx') }} # [linux]
+  run:
+    - vc 9  # [win and py27]
+    - vc 10  # [win and py34]
+    - vc 14  # [win and py>=35]
+
+test:
+  commands:
+    - geos-config --version  # [not win]
+    - conda inspect linkages -p $PREFIX geos  # [not win]
+    - conda inspect objects -p $PREFIX geos  # [osx]
+
+about:
+  home: http://trac.osgeo.org/geos/
+  license: LGPLv2.1
+  license_file: COPYING
+  summary: 'Geometry Engine - Open Source.'
+  description: |
+    GEOS (Geometry Engine - Open Source) is a C++ port of the Java Topology
+    Suite (JTS). As such, it aims to contain the complete functionality of
+    JTS in C++.
+  doc_url: http://trac.osgeo.org/geos/
+  dev_url: https://github.com/libgeos/libgeos
+
+extra:
+  recipe-maintainers:
+    - ocefpaf
+    - pelson
+    - gillins
