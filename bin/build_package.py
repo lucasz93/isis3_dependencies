@@ -63,7 +63,7 @@ if __name__ == '__main__':
     args = vars(parser.parse_args())
 
     base_path = os.getcwd()
-    config_file = args.get('config', '%s/meta/conda_build_config.yaml' %base_path)
+    config_file = args.get('config', '../meta/conda_build_config.yaml')
     recipies_path = args.get('recipies', '%s/recipies' %base_path)
     dest_path = args.get('dest', '%s/build' %base_path)
     channel=args.get('channel', list())
