@@ -5,7 +5,8 @@ package:
   version: {{ version }}
 
 source:
-  path: /Users/krodriguez-pr/repos/ISIS3
+  git_url: https://github.com/Kelvinrr/ISIS3.git
+  git_branch: cmake
 build:
   number: 0
 
@@ -13,6 +14,7 @@ build:
 # Shotgun strat on requirements until we can narrow them down
 requirements:
   build:
+    - pyopengl
     - pcl==1.8.1
     - geos==3.5.1
     - protobuf==3.5.2
@@ -48,7 +50,7 @@ requirements:
     - libxml2==2.9.7=0
     - mesalib==17.2.0=0
     - mysql-connector-c==6.1.6=0
-    - nn==1.86.0=2
+    - nn==1.86.0=1
     - numpy==1.13.3=py36_blas_openblas_200
     - openblas==0.2.19=2
     - opencv==3.3.0
@@ -69,7 +71,6 @@ requirements:
     - qwt
     - tnt==126=0
     - xalan-c==1.11
-    - {{ compiler('cxx') }}      # [linux]
   run:
     - pcl==1.8.1
     - geos==3.5.1
@@ -106,7 +107,7 @@ requirements:
     - libxml2==2.9.7=0
     - mesalib==17.2.0=0
     - mysql-connector-c==6.1.6=0
-    - nn==1.86.0=2
+    - nn==1.86.0=1
     - numpy==1.13.3=py36_blas_openblas_200
     - openblas==0.2.19=2
     - opencv==3.3.0
@@ -127,7 +128,7 @@ requirements:
     - qwt
     - tnt==126=0
     - xalan-c==1.11
-
+    - pyopengl
 # Add the tests eventually
 # test:
 #
