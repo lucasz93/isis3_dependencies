@@ -6,20 +6,20 @@ package:
 
 source:
   fn: qt-everywhere-opensource-src-{{ package_versions.qt }}.tar.gz
-  url: http://download.qt.io/official_releases/qt/{{ major }}/{{ package_versions.qt }}/single/qt-everywhere-opensource-src-{{ package_versions.qt }}.tar.gz
-  patches:
-    - 0005-Remove-unused-include-sys-signalfd.h.patch
-    - 0006-zlib_dependency-Add-EXTRA_INCLUDEPATH-for-system-zli.patch
-    - 0007-CentOS5-Do-not-use-strict_c-when-using-c-11.patch
-    #- 0008-disable-Ubuntu-overlay-scrollbars-as-they-don-t-play.patch # [linux]
-    # qtbase
-    - 0004-VS2008-Add-typedefs-for-more-int-_t-and-define-_STDI.patch  # [win]
-    - 0009-osx-force-10.9-deployment-target.patch  # [osx]
-    #- 0010-osx-xctest-check.patch  # [osx]
-    # qt3d
-    - 0001-Don-t-re-typedef-int-_t-if-_STDINT-is-defined.patch  # [win]
-    # qtwinextras
-    - 0001-shobjidl-Fix-compile-guard-around-SHARDAPPIDINFOLINK.patch  # [win]
+  url: http://download.qt.io/archive/qt/{{ major }}/{{ package_versions.qt }}/single/qt-everywhere-opensource-src-{{ package_versions.qt }}.tar.gz
+  # patches:
+  #   - 0005-Remove-unused-include-sys-signalfd.h.patch
+  #   - 0006-zlib_dependency-Add-EXTRA_INCLUDEPATH-for-system-zli.patch
+  #   - 0007-CentOS5-Do-not-use-strict_c-when-using-c-11.patch
+  #   #- 0008-disable-Ubuntu-overlay-scrollbars-as-they-don-t-play.patch # [linux]
+  #   # qtbase
+  #   - 0004-VS2008-Add-typedefs-for-more-int-_t-and-define-_STDI.patch  # [win]
+  #   - 0009-osx-force-10.9-deployment-target.patch  # [osx]
+  #   #- 0010-osx-xctest-check.patch  # [osx]
+  #   # qt3d
+  #   - 0001-Don-t-re-typedef-int-_t-if-_STDINT-is-defined.patch  # [win]
+  #   # qtwinextras
+  #   - 0001-shobjidl-Fix-compile-guard-around-SHARDAPPIDINFOLINK.patch  # [win]
 
 build:
   detect_binary_files_with_prefix: true
@@ -31,7 +31,7 @@ build:
 requirements:
   build:
     - python  # [win]
-    - python 2.7*  # [unix]
+    - python 3.6*  # [unix]
     - 7za  # [win]
     - bison  # [linux]
     - flex  # [linux]
@@ -53,6 +53,9 @@ requirements:
     - vc 9  # [win and py27]
     - vc 10  # [win and py34]
     - vc 14  # [win and py>=35]
+    - mysql
+    - sqlite
+    - postgresql
   run:
     - freetype 2.7|2.7.*  # [linux]
     - fontconfig 2.12.*  # [linux]
@@ -76,8 +79,6 @@ test:
   commands:
     - conda inspect linkages -p $PREFIX qt  # [not win]
     - conda inspect objects -p $PREFIX qt  # [osx]
-    - if not exist %LIBRARY_BIN%\\Qt5WebKit.dll exit 1  # [win]
-    - test -f $PREFIX/lib/libQt5WebKit.so  # [linux]
 
 about:
   home: http://qt-project.org
