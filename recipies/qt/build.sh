@@ -69,7 +69,7 @@ if [ $(uname) == Darwin ]; then
         unset $x
     done
 
-    export MACOSX_DEPLOYMENT_TARGET=10.9
+    export MACOSX_DEPLOYMENT_TARGET=10.13
 
     ./configure -prefix $PREFIX \
                 -libdir $PREFIX/lib \
@@ -116,7 +116,7 @@ if [ $(uname) == Darwin ]; then
                 -no-libudev \
                 -no-egl \
                 -no-openssl \
-                -sdk macosx10.12 \
+                -sdk macosx10.13 \
     ####
 
     make -j $CPU_COUNT || exit 1
