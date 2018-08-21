@@ -1,5 +1,5 @@
 #!/bin/tcsh
-cp /usgs/pkgs/local/v007/src/kakadu/v7_9_1-01762L.zip . 
+cp ~/v7_9_1-01762L.zip . 
 unzip v7_9_1-01762L.zip
 cd v7_9_1-01762L
 
