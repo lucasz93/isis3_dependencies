@@ -5,8 +5,8 @@ package:
   version: {{ package_versions.qt }}
 
 source:
-  fn: qt-everywhere-opensource-src-{{ package_versions.qt }}.tar.gz
-  url: http://download.qt.io/archive/qt/{{ major }}/{{ package_versions.qt }}/single/qt-everywhere-opensource-src-{{ package_versions.qt }}.tar.gz
+  fn: qt-everywhere-opensource-src-{{ package_versions.qt }}.tar.xz
+  url: http://download.qt.io/archive/qt/{{ major }}/{{ package_versions.qt }}/single/qt-everywhere-opensource-src-{{ package_versions.qt }}.tar.xz
   # patches:
   #   - 0005-Remove-unused-include-sys-signalfd.h.patch
   #   - 0006-zlib_dependency-Add-EXTRA_INCLUDEPATH-for-system-zli.patch
@@ -31,7 +31,7 @@ build:
 requirements:
   build:
     - python  # [win]
-    - python 3.6*  # [unix]
+    - python 2.7*  # [osx]
     - 7za  # [win]
     - bison  # [linux]
     - flex  # [linux]

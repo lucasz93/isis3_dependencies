@@ -69,6 +69,9 @@ if [ $(uname) == Darwin ]; then
         unset $x
     done
 
+    #patch -p0 < "${RECIPE_DIR}"/0011-qfontengine_QFixed_constructorname.patch
+    #patch -p0 < "${RECIPE_DIR}"/0012-qcoacoahelpers_undeclaredidentifier_mac1013.patch
+
     export MACOSX_DEPLOYMENT_TARGET=10.13
 
     ./configure -prefix $PREFIX \
@@ -95,6 +98,7 @@ if [ $(uname) == Darwin ]; then
                 -skip wayland \
                 -skip canvas3d \
                 -skip 3d \
+                -skip webengine \
                 -system-libjpeg \
                 -system-libpng \
                 -system-zlib \
@@ -120,9 +124,7 @@ if [ $(uname) == Darwin ]; then
     ####
 
     make -j $CPU_COUNT || exit 1
-    echo "ASD"
     make install
-    echo "ASD2"
 fi
 
 
@@ -138,7 +140,6 @@ cp "${RECIPE_DIR}"/qt.conf "${PREFIX}"/bin/
 
 if [ $(uname) == Darwin ]
 then
-    echo "ASD3"
     BIN=$PREFIX/bin
 
     for name in Assistant Designer Linguist pixeltool qml
@@ -146,7 +147,6 @@ then
         mv ${BIN}/${name}.app ${BIN}/${name}app
     done
 
-    echo "ASD4"
     # We built Qt itself with SDK 10.9, but we shouldn't
     # force users to also build their Qt apps with SDK 10.9
     # https://bugreports.qt.io/browse/QTBUG-41238

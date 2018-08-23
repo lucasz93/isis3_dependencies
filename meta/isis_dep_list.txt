@@ -24,7 +24,7 @@ patchelf 0.8 library
 pcl 1.8.0 library
 protobuf 2.6.1
 qhull 7.2.0 library
-qt 5.7.1 library
+qt 5.9.6 library
 qwt 6.1.2 library
 suitesparse 4.4.5 library
 superlu 4.3 library

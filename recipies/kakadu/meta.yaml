@@ -1,7 +1,7 @@
 
 package:
   name: kakadu
-  version: 2
+  version: 1
 
 build:
   detect_binary_files_with_prefix: true
