@@ -5,7 +5,7 @@ package:
 
 source:
   fn: master.zip
-  url: https://github.com/chrisryancombs/TNT/archive/master.zip
+  url: https://github.com/USGS-Astrogeology/TNT/archive/master.zip
 
 about:
   home: http://math.nist.gov/tnt/
