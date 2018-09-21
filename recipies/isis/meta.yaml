@@ -5,7 +5,7 @@ package:
   version: {{ version }}
 
 source:
-  git_url: https://github.com/Kelvinrr/ISIS3.git
+  git_url: https://github.com/chrisryancombs/ISIS3.git
   git_branch: cmake
 build:
   number: 0
@@ -14,17 +14,19 @@ build:
 # Shotgun strat on requirements until we can narrow them down
 requirements:
   build:
-    - pyopengl
+    - armadillo==8.200.0 
     - pcl==1.8.1
     - geos==3.5.1
     - protobuf==3.5.2
     - libprotobuf==3.5.2
     - qwt=6.1.3
-    - pyqt==5.6.0
+    # - pyqt==5.6.0
     - sip==4.18
     - mysql==5.7.20
     - ninja==1.7.2=0
-    - patchelf==0.9
+    - xorg-libsm
+    - xorg-libxi
+    - xorg-libice
     - pip==9.0.1
     - setuptools=38.5.1
     - wheel==0.30.0
@@ -45,15 +47,15 @@ requirements:
     - icu==58.2=0
     - jpeg==9b=2
     - krb5==1.14.2=0
-    - libpng==1.6.28=2
+    - libpng>=1.6.34
     - libtiff==4.0.9=0
     - libxml2==2.9.7=0
     - mesalib==17.2.0=0
     - mysql-connector-c==6.1.6=0
-    - nn==1.86.0=1
-    - numpy==1.13.3=py36_blas_openblas_200
+    - nn==1.86.0=2
+    # - numpy==1.13.3=py36_blas_openblas_200
     - openblas==0.2.19=2
-    - opencv==3.3.0
+    - opencv
     - nanoflann==1.2.2
     - gmm==5.0
     - jama==125
@@ -67,21 +69,26 @@ requirements:
     - bz2file==0.98
     - bullet==2.86.1=0
     - qhull==7.2.0=0
-    - qt=5.6.2
-    - qwt
+    - qt=5.9.6
     - tnt==126=0
     - xalan-c==1.11
+    - x264==20131218
+    - make
+    - kakadu==1
   run:
+    - armadillo==8.200.0 
     - pcl==1.8.1
     - geos==3.5.1
     - protobuf==3.5.2
     - libprotobuf==3.5.2
     - qwt=6.1.3
-    - pyqt==5.6.0
+    # - pyqt==5.6.0
     - sip==4.18
     - mysql==5.7.20
     - ninja==1.7.2=0
-    - patchelf==0.9
+    - xorg-libsm
+    - xorg-libxi
+    - xorg-libice
     - pip==9.0.1
     - setuptools=38.5.1
     - wheel==0.30.0
@@ -102,15 +109,15 @@ requirements:
     - icu==58.2=0
     - jpeg==9b=2
     - krb5==1.14.2=0
-    - libpng==1.6.28=2
+    - libpng>=1.6.34
     - libtiff==4.0.9=0
     - libxml2==2.9.7=0
     - mesalib==17.2.0=0
     - mysql-connector-c==6.1.6=0
-    - nn==1.86.0=1
-    - numpy==1.13.3=py36_blas_openblas_200
+    - nn==1.86.0=2
+    # - numpy==1.13.3=py36_blas_openblas_200
     - openblas==0.2.19=2
-    - opencv==3.3.0
+    - opencv
     - nanoflann==1.2.2
     - gmm==5.0
     - jama==125
@@ -124,11 +131,12 @@ requirements:
     - bz2file==0.98
     - bullet==2.86.1=0
     - qhull==7.2.0=0
-    - qt=5.6.2
-    - qwt
+    - qt=5.9.6
     - tnt==126=0
     - xalan-c==1.11
-    - pyopengl
+    - x264==20131218
+    - make
+    - kakadu==1
 # Add the tests eventually
 # test:
 #

@@ -1,7 +1,7 @@
 name: isisdeps
 channels:
-  - usgs-astrogeology
   - conda-forge
+  - usgs-astrogeology
   - anaconda
 dependencies:
   - boost-cpp=1.65.1

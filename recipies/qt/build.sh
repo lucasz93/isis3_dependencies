@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# QT build for ISIS3. Specifically adds in flags for database plugins. 
+
 # Compile
 # -------
 chmod +x configure
