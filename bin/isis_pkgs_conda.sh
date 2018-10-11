@@ -9,7 +9,7 @@ filename='./meta/isis_dep_list.txt'
 action="status"
 platform="osx-64"
 envpath="/usr/local/anaconda/envs/${envname}"
-dest="./recipies"
+dest="./recipes"
 self=$(basename "$0")
 skip=0
 declare -a missing
@@ -19,19 +19,19 @@ declare -a found
 function help(){
 	echo -e "\n${self} [options] <action>"
 	echo -e "\nIs a set of utilities for helping create an isis build environment with conda"
-	echo -e "\n\t -d <path> path to tranfer recipies for isis build. Default $dest"
+	echo -e "\n\t -d <path> path to tranfer recipes for isis build. Default $dest"
 	echo -e "\t -e <envname> conda environment to probe. Default $envname"
 	echo -e "\t -f <filename> path to a requirements list of packages, should have name and version. Default: $filename"
 	echo -e "\t -n <packagename> package to tranfer recipe for isis build. If not set all packages will be offered"
 	echo -e "\t -p <path> path to conda env for isis build. Default: $envpath"
-	echo -e "\t -s automatically skip any existing recipies in Transfer"
+	echo -e "\t -s automatically skip any existing recipes in Transfer"
 	echo -e "\n Actions:\n---------------------------------------------"
 	echo -e "\tStatus: will report all installed and missing package in json format"
 	echo -e "\tMissing: will report only missing packages in json format"
 	echo -e "\tInstalled: will report only installed packages in json format"
 	echo -e "\tMismatched: will report only the installed packages whose versions do not match the requirements"
 	echo -e "\tSearch: will search anaconda cloud for the missing packages and offer to install them"
-	echo -e "\tTransfer: will copy the recipies from installed matches to a destination folder.\n"
+	echo -e "\tTransfer: will copy the recipes from installed matches to a destination folder.\n"
 
 }
 
@@ -100,7 +100,7 @@ function mismatched(){
 		echo -e "behind:\n[\n${behind}\n]\n}"
 }
 # here we lookin in conda-meta for the env
-# and copy out the recipies to a new directory
+# and copy out the recipes to a new directory
 # for modification and builds
 function transfer(){
 	 meta=${envpath}/conda-meta
