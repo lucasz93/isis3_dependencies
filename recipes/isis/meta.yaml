@@ -54,7 +54,7 @@ requirements:
     - mysql-connector-c==6.1.6=0
     - nn==1.86.0=2
     - openblas==0.2.19=2
-    - opencv
+    - opencv==3.3.0
     - nanoflann==1.2.2
     - gmm==5.0
     - jama==125
@@ -114,7 +114,7 @@ requirements:
     - mysql-connector-c==6.1.6=0
     - nn==1.86.0=2
     - openblas==0.2.19=2
-    - opencv
+    - opencv==3.3.0
     - nanoflann==1.2.2
     - gmm==5.0
     - jama==125

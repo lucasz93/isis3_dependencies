@@ -20,7 +20,7 @@ package_versions:
   nanoflann: "1.2.2"
   ninja: "1.7.2"
   nn: "1.86.0"
-  opencv: "3.3.1"
+  opencv: "3.3.0"
   patchelf: "0.9"
   pcl: "1.8.1"
   protobuf: "3.2.0"
