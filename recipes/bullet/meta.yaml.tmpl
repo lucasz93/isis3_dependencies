@@ -6,6 +6,8 @@ package:
 source:
   fn: {{ package_versions.bullet }}.tar.gz
   url: https://github.com/bulletphysics/bullet3/archive/{{ package_versions.bullet }}.tar.gz
+  patches:
+    - 0001-max-num-parts-in-bits.patch
 
 build:
   detect_binary_files_with_prefix: true

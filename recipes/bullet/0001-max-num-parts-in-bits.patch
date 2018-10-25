@@ -1,0 +1,24 @@
+diff -u src/BulletCollision/BroadphaseCollision/btQuantizedBvh.h src/BulletCollision/BroadphaseCollision/btQuantizedBvh.h
+--- src/BulletCollision/BroadphaseCollision/btQuantizedBvh.h 
++++ src/BulletCollision/BroadphaseCollision/btQuantizedBvh.h
+@@ -54,7 +54,7 @@
+ 
+ // 10 gives the potential for 1024 parts, with at most 2^21 (2097152) (minus one
+ // actually) triangles each (since the sign bit is reserved
+-#define MAX_NUM_PARTS_IN_BITS 10
++#define MAX_NUM_PARTS_IN_BITS 4
+ 
+ ///b3QuantizedBvhNode is a compressed aabb node, 16 bytes.
+ ///Node can be used for leafnode or internal node. Leafnodes can point to 32-bit triangle index (non-negative range).
+diff -u src/Bullet3OpenCL/NarrowphaseCollision/b3QuantizedBvh.h src/Bullet3OpenCL/NarrowphaseCollision/b3QuantizedBvh.h 
+--- src/Bullet3OpenCL/NarrowphaseCollision/b3QuantizedBvh.h
++++ src/Bullet3OpenCL/NarrowphaseCollision/b3QuantizedBvh.h
+@@ -51,7 +51,7 @@
+ 
+ // 10 gives the potential for 1024 parts, with at most 2^21 (2097152) (minus one
+ // actually) triangles each (since the sign bit is reserved
+-#define MAX_NUM_PARTS_IN_BITS 10
++#define MAX_NUM_PARTS_IN_BITS 4
+ 
+ ///btQuantizedBvhNode is a compressed aabb node, 16 bytes.
+ ///Node can be used for leafnode or internal node. Leafnodes can point to 32-bit triangle index (non-negative range).

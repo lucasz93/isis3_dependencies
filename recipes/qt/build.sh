@@ -1,23 +1,12 @@
 #!/bin/bash
 
+# QT build for ISIS3. Specifically adds in flags for database plugins. 
+
 # Compile
 # -------
 chmod +x configure
 
 if [ $(uname) == Linux ]; then
-
-    # Download QtWebkit
-    curl "http://linorg.usp.br/Qt/community_releases/5.7/${PKG_VERSION}/qtwebkit-opensource-src-${PKG_VERSION}.tar.xz" > qtwebkit.tar.xz
-    unxz qtwebkit.tar.xz
-    tar xf qtwebkit.tar
-    mv qtwebkit-opensource-src* qtwebkit
-    patch -p0 < "${RECIPE_DIR}"/0001-qtwebkit-old-ld-compat.patch
-    patch -p0 < "${RECIPE_DIR}"/0002-qtwebkit-ruby-1.8.patch
-    patch -p0 < "${RECIPE_DIR}"/0003-qtwebkit-O_CLOEXEC-workaround.patch
-    patch -p0 < "${RECIPE_DIR}"/0004-qtwebkit-CentOS5-Fix-fucomip-compat-with-gas-2.17.50.patch
-    # From https://bugs.webkit.org/show_bug.cgi?id=70610, http://trac.webkit.org/changeset/172759, https://github.com/WebKit/webkit/commit/4d7f0f
-    patch -p0 < "${RECIPE_DIR}"/0005-qtwebkit-fix-TEXTREL-on-x86-changeset_172759.patch
-    rm qtwebkit.tar
 
     MAKE_JOBS=$CPU_COUNT
 
@@ -51,6 +40,12 @@ if [ $(uname) == Linux ]; then
                 -qt-pcre \
                 -qt-xcb \
                 -qt-xkbcommon \
+                -plugin-sql-mysql \
+                -plugin-sql-psql \
+                -plugin-sql-sqlite \
+                -no-sql-db2 \
+                -no-sql-oci \
+                -no-sql-ibase \
                 -xkb-config-root $PREFIX/lib \
                 -dbus \
                 -no-linuxfb \
@@ -63,16 +58,7 @@ if [ $(uname) == Linux ]; then
                 -D FC_WEIGHT_EXTRABLACK=215 \
                 -D FC_WEIGHT_ULTRABLACK=FC_WEIGHT_EXTRABLACK \
                 -D GLX_GLXEXT_PROTOTYPES
-# To get a much quicker turnaround you can add this: (remember also to add the backslash after GLX_GLXEXT_PROTOTYPES)
-# -skip qtwebsockets -skip qtwebchannel -skip qtwayland -skip qtsvg -skip qtsensors -skip qtcanvas3d -skip qtconnectivity -skip declarative -skip multimedia -skip qttools
 
-# If we must not remove strict_c++ from qtbase/mkspecs/features/qt_common.prf
-# (0007-qtbase-CentOS5-Do-not-use-strict_c++.patch) then we need to add these
-# defines instead:
-# -D __u64="unsigned long long" \
-# -D __s64="__signed__ long long" \
-# -D __le64="unsigned long long" \
-# -D __be64="__signed__ long long"
 
     LD_LIBRARY_PATH=$PREFIX/lib make -j $MAKE_JOBS || exit 1
     make install
@@ -85,7 +71,10 @@ if [ $(uname) == Darwin ]; then
         unset $x
     done
 
-    export MACOSX_DEPLOYMENT_TARGET=10.9
+    #patch -p0 < "${RECIPE_DIR}"/0011-qfontengine_QFixed_constructorname.patch
+    #patch -p0 < "${RECIPE_DIR}"/0012-qcoacoahelpers_undeclaredidentifier_mac1013.patch
+
+    export MACOSX_DEPLOYMENT_TARGET=10.13
 
     ./configure -prefix $PREFIX \
                 -libdir $PREFIX/lib \
@@ -111,11 +100,18 @@ if [ $(uname) == Darwin ]; then
                 -skip wayland \
                 -skip canvas3d \
                 -skip 3d \
+                -skip webengine \
                 -system-libjpeg \
                 -system-libpng \
                 -system-zlib \
                 -qt-pcre \
                 -qt-freetype \
+                -plugin-sql-mysql \
+                -plugin-sql-psql \
+                -plugin-sql-sqlite \
+                -no-sql-db2 \
+                -no-sql-oci \
+                -no-sql-ibase \
                 -c++std 11 \
                 -no-framework \
                 -no-dbus \
@@ -126,7 +122,7 @@ if [ $(uname) == Darwin ]; then
                 -no-libudev \
                 -no-egl \
                 -no-openssl \
-                -sdk macosx10.12 \
+                -sdk macosx10.13 \
     ####
 
     make -j $CPU_COUNT || exit 1

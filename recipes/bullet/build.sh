@@ -1,3 +1,7 @@
+# Special bullet build for ISIS3. 
+# The 0001-max-num-parts-in-bits.patch is necessary for ISIS applications
+# that use bullet for calculations on few but large bodies.
+
 mkdir bullet-build
 cd bullet-build
 

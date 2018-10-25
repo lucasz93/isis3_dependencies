@@ -1,15 +1,14 @@
 
 package:
   name: tnt
-  version: {{ package_versions.tnt }}
+  version: 126
 
 source:
-  fn: tnt_{{ package_versions.bullet }}.zip
-  url: http://math.nist.gov/tnt/tnt_{{ package_versions.tnt }}.zip
-
+  fn: master.zip
+  url: https://github.com/USGS-Astrogeology/TNT/archive/master.zip
 
 about:
-  home:  http://math.nist.gov/tnt/
+  home: http://math.nist.gov/tnt/
   license: public domain
   summary: collection of interfaces and reference implementations
     of numerical objects useful for scientific computing in C++.
