@@ -9,7 +9,7 @@ source:
   git_branch: release
 
 build:
-  number: 2
+  number: 3
 
 # Shotgun strat on requirements until we can narrow them down
 requirements:
