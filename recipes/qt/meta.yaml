@@ -1,0 +1,88 @@
+package:
+  name: qt
+  version: 5.9.6
+
+source:
+  fn: qt-everywhere-opensource-src-5.9.6.tar.xz
+  url: http://download.qt.io/archive/qt/5.9/5.9.6/single/qt-everywhere-opensource-src-5.9.6.tar.xz
+
+build:
+  number: 7
+  detect_binary_files_with_prefix: true
+  features:
+    - vc9  # [win and py27]
+    - vc10  # [win and py34]
+    - vc14  # [win and py>=35]
+
+requirements:
+  build:
+    - python  # [win]
+    - python 2.7*  #[not win]
+    - 7za  # [win]
+    - bison  # [linux]
+    - flex  # [linux]
+    - gperf  # [linux]
+    - curl  # [win]
+    - msinttypes  # [win and py27]
+    - perl 5.*
+    - freetype 2.7|2.7.*  # [linux]
+    - fontconfig 2.12.*  # [linux]
+    - openssl=1.0.*  # [not osx]
+    - jpeg=9b
+    - zlib >=1.2.11,<1.3.0a0
+    - libpng >=1.6.28,<1.7
+    - gst-plugins-base=1.8.0  # [linux]
+    - icu 58.*
+    - libxcb  # [linux]
+    - xorg-libxrender # [linux]
+    - dbus=1.13.0  # [linux]
+    - vc 9  # [win and py27]
+    - vc 10  # [win and py34]
+    - vc 14  # [win and py>=35]
+    - mysql
+    - sqlite=3.20.1
+    - postgresql=10.6
+  run:
+    - freetype 2.7|2.7.*  # [linux]
+    - fontconfig 2.12.*  # [linux]
+    - openssl=1.0.* # [not osx]
+    - zlib >=1.2.11,<1.3.0a0
+    - libpng >=1.6.28,<1.7
+    - gst-plugins-base # [linux]
+    - icu 58.*
+    - libxcb  # [linux]
+    - xorg-libxrender # [linux]
+    - dbus  # [linux]
+    - vc 9  # [win and py27]
+    - vc 10  # [win and py34]
+    - vc 14  # [win and py>=35]
+    - mysql
+    - sqlite
+    - postgresql
+
+test:
+  files:
+    - test/hello.pro
+    - test/main.cpp
+  commands:
+    - conda inspect linkages -p $PREFIX qt  # [not win]
+    - conda inspect objects -p $PREFIX qt  # [osx]
+
+about:
+  home: http://qt-project.org
+  license: LGPL-3.0
+  summary: 'Qt is a cross-platform application and UI framework.'
+  description: |
+    Qt helps you create connected devices, UIs & applications that run
+    anywhere on any device, on any operating system at any time.
+  doc_url: http://doc.qt.io/
+  dev_url: https://github.com/qtproject
+
+extra:
+  recipe-maintainers:
+    - ccordoba12
+    - mingwandroid
+    - gillins
+    - msarahan
+    - ocefpaf
+    - stuarteberg

@@ -34,7 +34,6 @@ if [ $(uname) == Linux ]; then
                 -skip canvas3d \
                 -skip 3d \
                 -skip webengine \
-                -system-libjpeg \
                 -system-libpng \
                 -system-zlib \
                 -qt-pcre \
@@ -101,7 +100,6 @@ if [ $(uname) == Darwin ]; then
                 -skip canvas3d \
                 -skip 3d \
                 -skip webengine \
-                -system-libjpeg \
                 -system-libpng \
                 -system-zlib \
                 -qt-pcre \
