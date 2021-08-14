@@ -40,4 +40,4 @@ for package in os.listdir(recipe_root):
                 spec['requires'] =dep[1]
             run_deps[dep[0]].append(spec)
 output={ "Build-Deps": build_deps, "Run-Deps": run_deps}
-print yaml.dump(output)
+print(f'{yaml.dump(output)}')

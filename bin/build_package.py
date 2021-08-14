@@ -7,7 +7,7 @@ from conda_build import api as conda
 
 def load_config(filename):
     with open(filename, 'r') as f:
-        config = yaml.load(f)
+        config = yaml.safe_load(f)
         return config
 
 def get_all_pkgs(recipe_root):
@@ -89,7 +89,7 @@ if __name__ == '__main__':
 
         if not no_prompt:
             res=input('Do you want to process %s (y/n)? ' %package)
-            if res is not 'y':
+            if res != 'y':
                 continue
 
         if not no_meta:
